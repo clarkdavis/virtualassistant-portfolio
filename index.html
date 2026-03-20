@@ -1,0 +1,1267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Baby Jane Magros Rodriguez — Virtual Assistant</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --cream:#faf6f1;--sand:#f2ebe0;--sand2:#e8ddd0;
+      --terra:#c4714a;--terra2:#d4845e;--terra-light:rgba(196,113,74,0.1);
+      --brown:#3d2b1f;--brown2:#6b4f3f;--muted:#a0887a;
+      --white:#ffffff;--border:rgba(160,136,122,0.2);--sage:#6b9e8a;
+    }
+    html{scroll-behavior:smooth}
+    body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--cream);color:var(--brown);overflow-x:hidden}
+    body::before{content:'';position:fixed;inset:0;z-index:999;pointer-events:none;opacity:0.025;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");background-size:200px}
+    .reveal,.reveal-left,.reveal-right{opacity:1;transform:none;transition:opacity 0.7s ease,transform 0.7s ease}
+
+    /* NAV */
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 4rem;height:70px;display:flex;align-items:center;justify-content:space-between;background:rgba(250,246,241,0.96);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);transition:box-shadow 0.3s}
+    nav.scrolled{box-shadow:0 4px 24px rgba(61,43,31,0.07)}
+    .nav-logo{font-family:'Plus Jakarta Sans',sans-serif;font-size:1rem;font-weight:800;color:var(--brown);text-decoration:none;letter-spacing:-0.01em}
+    .nav-logo span{color:var(--terra)}
+    .nav-links{display:flex;gap:2rem;list-style:none;align-items:center}
+    .nav-links a{font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:var(--muted);text-decoration:none;transition:color 0.25s;position:relative}
+    .nav-links a:hover{color:var(--terra)}
+    .nav-btn{padding:0.55rem 1.4rem !important;background:var(--terra);color:white !important;border-radius:100px;transition:background 0.25s,transform 0.2s !important}
+    .nav-btn:hover{background:var(--terra2) !important;transform:translateY(-1px)}
+
+    /* HERO */
+    .hero{min-height:100vh;padding-top:70px;display:grid;grid-template-columns:1fr 460px;position:relative;overflow:hidden}
+    .hero-bg{position:absolute;top:-200px;right:350px;width:600px;height:600px;background:radial-gradient(circle,rgba(196,113,74,0.08) 0%,transparent 70%);pointer-events:none}
+    .hero-content{display:flex;flex-direction:column;justify-content:center;padding:4rem 3.5rem 4rem 4rem;position:relative;z-index:2}
+    .hero-pill{display:inline-flex;align-items:center;gap:0.6rem;background:var(--white);border:1px solid var(--border);border-radius:100px;padding:0.4rem 1rem 0.4rem 0.6rem;font-size:0.67rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--brown2);margin-bottom:2rem;width:fit-content;box-shadow:0 2px 8px rgba(61,43,31,0.06)}
+    .pulse{width:8px;height:8px;background:var(--sage);border-radius:50%;animation:pulse 2s infinite}
+    @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.4;transform:scale(1.4)}}
+    .hero-h1{font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(3rem,5.2vw,5.5rem);font-weight:800;line-height:0.95;letter-spacing:-0.03em;color:var(--brown);margin-bottom:1.8rem}
+    .hero-h1 .italic-line{display:block;color:var(--terra);font-family:'Lora',serif;font-style:italic;font-weight:400;font-size:0.92em;line-height:1.1}
+    .hero-p{font-size:1rem;font-weight:300;color:var(--brown2);line-height:1.8;max-width:460px;margin-bottom:2rem}
+    .hero-p strong{color:var(--brown);font-weight:600}
+    .hero-tags{display:flex;flex-wrap:wrap;gap:0.45rem;margin-bottom:2.5rem}
+    .htag{font-size:0.67rem;font-weight:500;padding:0.4rem 0.9rem;border-radius:100px;border:1px solid var(--border);color:var(--brown2);background:var(--white);transition:all 0.2s;cursor:default}
+    .htag:hover{background:var(--terra-light);border-color:var(--terra);color:var(--terra)}
+    .hero-ctas{display:flex;gap:1rem;align-items:center;flex-wrap:wrap}
+    .btn-p{display:inline-flex;align-items:center;gap:0.5rem;padding:0.9rem 2rem;background:var(--terra);color:white;font-family:'Plus Jakarta Sans',sans-serif;font-size:0.78rem;font-weight:700;letter-spacing:0.04em;text-decoration:none;border-radius:100px;transition:all 0.25s}
+    .btn-p:hover{background:var(--terra2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(196,113,74,0.35)}
+    .btn-s{display:inline-flex;align-items:center;gap:0.5rem;padding:0.9rem 2rem;border:1.5px solid var(--sand2);color:var(--brown2);font-family:'Plus Jakarta Sans',sans-serif;font-size:0.78rem;font-weight:700;letter-spacing:0.04em;text-decoration:none;border-radius:100px;transition:all 0.25s}
+    .btn-s:hover{border-color:var(--terra);color:var(--terra)}
+    .hero-scarcity{margin-top:2rem;display:inline-flex;align-items:center;gap:0.6rem;font-size:0.72rem;color:var(--muted)}
+    .s-dot{width:6px;height:6px;background:var(--terra);border-radius:50%;flex-shrink:0}
+    .hero-photo{position:relative;overflow:visible;background:var(--sand)}
+    .hero-photo img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block}
+    .hero-photo::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,transparent 55%,var(--sand) 100%)}
+    .hero-float{position:absolute;bottom:5rem;left:-2rem;z-index:2;background:white;border-radius:16px;padding:1.2rem 1.8rem;box-shadow:0 16px 48px rgba(61,43,31,0.14)}
+    .hf-label{font-size:0.58rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);margin-bottom:0.3rem}
+    .hf-val{font-family:'Plus Jakarta Sans',sans-serif;font-size:2rem;font-weight:800;color:var(--terra);line-height:1}
+    .hf-sub{font-size:0.7rem;color:var(--brown2);margin-top:0.2rem}
+
+    /* TICKER */
+    .ticker{background:var(--terra);overflow:hidden;padding:0.8rem 0}
+    .ticker-track{display:flex;white-space:nowrap;animation:ticker 25s linear infinite}
+    .ti{display:inline-flex;align-items:center;gap:2rem;padding:0 2.5rem;font-family:'Plus Jakarta Sans',sans-serif;font-size:0.68rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.92)}
+    .ti::after{content:'✦';color:rgba(255,255,255,0.35)}
+    @keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+    /* STATS */
+    .stats{display:grid;grid-template-columns:repeat(4,1fr);background:var(--white);border-bottom:1px solid var(--border)}
+    .stat{padding:2.5rem 2rem;text-align:center;border-right:1px solid var(--border);transition:background 0.2s;cursor:default}
+    .stat:last-child{border-right:none}
+    .stat:hover{background:var(--sand)}
+    .stat-n{font-family:'Plus Jakarta Sans',sans-serif;font-size:2.4rem;font-weight:800;color:var(--terra);line-height:1;letter-spacing:-0.02em}
+    .stat-l{font-size:0.63rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);margin-top:0.5rem;font-weight:600}
+
+    /* SECTION COMMONS */
+    .eyebrow{font-family:'Plus Jakarta Sans',sans-serif;font-size:0.63rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--terra);font-weight:700;display:flex;align-items:center;gap:0.7rem;margin-bottom:0.8rem}
+    .eyebrow::before{content:'';width:18px;height:2px;background:var(--terra);border-radius:2px;flex-shrink:0}
+    .s-title{font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(1.8rem,3vw,2.7rem);font-weight:800;letter-spacing:-0.02em;line-height:1.1;color:var(--brown)}
+    .s-title em{font-family:'Lora',serif;font-style:italic;font-weight:400;color:var(--terra)}
+
+    /* ABOUT */
+    .about{padding:7rem 4rem;display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:start}
+    .about-body{font-size:0.97rem;font-weight:300;color:var(--brown2);line-height:1.85;margin-bottom:1.2rem}
+    .about-body strong{color:var(--brown);font-weight:600}
+    .about-hl{margin-top:2rem;padding:1.4rem 1.6rem;background:var(--terra-light);border-left:3px solid var(--terra);border-radius:0 10px 10px 0}
+    .about-hl p{font-size:0.88rem;color:var(--brown2);line-height:1.75;font-style:italic}
+    .about-hl strong{color:var(--terra);font-style:normal}
+    .tools-t{font-family:'Plus Jakarta Sans',sans-serif;font-size:0.63rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted);font-weight:700;margin:2rem 0 0.8rem}
+    .tools{display:flex;flex-wrap:wrap;gap:0.45rem}
+    .tool{font-size:0.68rem;padding:0.38rem 0.85rem;border-radius:6px;background:var(--white);border:1px solid var(--border);color:var(--brown2);transition:all 0.2s;cursor:default}
+    .tool:hover{background:var(--sand);border-color:var(--terra);color:var(--terra)}
+    .tl{display:flex;flex-direction:column;margin-top:1.5rem}
+    .tl-item{padding:1.3rem 1.5rem;border:1px solid var(--border);border-bottom:none;background:var(--white);transition:all 0.2s;cursor:default}
+    .tl-item:first-child{border-radius:12px 12px 0 0}
+    .tl-item:last-child{border-bottom:1px solid var(--border);border-radius:0 0 12px 12px}
+    .tl-item:hover{background:var(--sand);border-color:var(--terra);z-index:1;position:relative}
+    .tl-role{font-family:'Plus Jakarta Sans',sans-serif;font-size:0.86rem;font-weight:700;color:var(--brown)}
+    .tl-co{font-size:0.76rem;color:var(--terra);margin-top:0.12rem}
+    .tl-date{font-size:0.66rem;color:var(--muted);margin-top:0.1rem}
+
+    /* SERVICES */
+    .services{padding:7rem 4rem;background:var(--sand)}
+    .svc-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:3.5rem;gap:2rem}
+    .svc-head-p{font-size:0.9rem;color:var(--brown2);font-weight:300;line-height:1.75;max-width:360px}
+    .svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+    .svc{background:var(--white);border-radius:16px;padding:2.4rem;border:1px solid var(--border);transition:all 0.3s;position:relative;overflow:hidden}
+    .svc::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--terra),var(--terra2));transform:scaleX(0);transform-origin:left;transition:transform 0.3s}
+    .svc:hover{transform:translateY(-6px);box-shadow:0 20px 48px rgba(61,43,31,0.1)}
+    .svc:hover::before{transform:scaleX(1)}
+    .svc-icon{width:50px;height:50px;background:var(--terra-light);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.35rem;margin-bottom:1.4rem}
+    .svc-title{font-family:'Plus Jakarta Sans',sans-serif;font-size:1.02rem;font-weight:700;color:var(--brown);margin-bottom:0.6rem}
+    .svc-desc{font-size:0.8rem;color:var(--brown2);line-height:1.75;margin-bottom:1.3rem;font-weight:300}
+    .svc-list{list-style:none;display:flex;flex-direction:column;gap:0.4rem}
+    .svc-list li{font-size:0.7rem;color:var(--muted);display:flex;align-items:center;gap:0.5rem}
+    .svc-list li::before{content:'';width:5px;height:5px;background:var(--terra);border-radius:50%;flex-shrink:0}
+
+    /* MID CTA */
+    .mid-cta{padding:5rem 4rem;background:var(--terra);display:flex;align-items:center;justify-content:space-between;gap:2rem}
+    .mid-cta h2{font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(1.8rem,3vw,2.5rem);font-weight:800;color:white;letter-spacing:-0.02em;line-height:1.15}
+    .mid-cta p{font-size:0.95rem;color:rgba(255,255,255,0.75);margin-top:0.6rem;font-weight:300}
+    .btn-white{display:inline-flex;align-items:center;gap:0.6rem;padding:1rem 2.2rem;background:white;color:var(--terra);font-family:'Plus Jakarta Sans',sans-serif;font-size:0.8rem;font-weight:700;text-decoration:none;border-radius:100px;white-space:nowrap;transition:all 0.25s;flex-shrink:0}
+    .btn-white:hover{background:var(--cream);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,0.15)}
+
+    /* WHY */
+    .why{padding:7rem 4rem;display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center}
+    .why-photo{position:relative}
+    .why-photo img{width:100%;height:560px;object-fit:cover;object-position:center top;border-radius:20px;display:block}
+    .why-photo::before{content:'';position:absolute;top:-1.5rem;left:-1.5rem;right:1.5rem;bottom:1.5rem;border:2px solid var(--sand2);border-radius:22px;z-index:-1}
+    .why-badge{position:absolute;bottom:2rem;right:-2rem;background:var(--terra);color:white;border-radius:14px;padding:1.4rem 1.6rem;text-align:center;box-shadow:0 12px 40px rgba(196,113,74,0.4)}
+    .wb-n{font-family:'Plus Jakarta Sans',sans-serif;font-size:2rem;font-weight:800;line-height:1}
+    .wb-l{font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;opacity:0.8;margin-top:0.3rem}
+    .why-pts{margin-top:2.5rem;display:flex;flex-direction:column;gap:1.3rem}
+    .why-pt{display:flex;gap:1.2rem;align-items:flex-start;padding:1.4rem;border-radius:12px;border:1px solid var(--border);background:var(--white);transition:all 0.25s;cursor:default}
+    .why-pt:hover{border-color:var(--terra);background:var(--terra-light);transform:translateX(4px)}
+    .why-n{font-family:'Plus Jakarta Sans',sans-serif;font-size:1.1rem;font-weight:800;color:var(--terra);min-width:32px;line-height:1.3}
+    .why-title{font-family:'Plus Jakarta Sans',sans-serif;font-size:0.88rem;font-weight:700;color:var(--brown);margin-bottom:0.25rem}
+    .why-desc{font-size:0.78rem;color:var(--brown2);line-height:1.7;font-weight:300}
+
+    /* IDEAL */
+    .ideal{padding:7rem 4rem;background:var(--sand)}
+    .ideal-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:3.5rem}
+    .ideal-card{background:var(--white);border-radius:16px;padding:2rem 1.8rem;border:1px solid var(--border);text-align:center;transition:all 0.3s;cursor:default}
+    .ideal-card:hover{border-color:var(--terra);transform:translateY(-5px);box-shadow:0 16px 40px rgba(61,43,31,0.08)}
+    .ideal-emoji{font-size:2.2rem;display:block;margin-bottom:1rem}
+    .ideal-title{font-family:'Plus Jakarta Sans',sans-serif;font-size:0.92rem;font-weight:700;color:var(--brown);margin-bottom:0.5rem}
+    .ideal-desc{font-size:0.73rem;color:var(--muted);line-height:1.7}
+
+    /* TESTIMONIALS */
+    .testi{padding:7rem 4rem;background:var(--brown)}
+    .testi .eyebrow{color:var(--terra2)}
+    .testi .eyebrow::before{background:var(--terra2)}
+    .testi .s-title{color:var(--cream)}
+    .testi-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:3.5rem}
+    .testi-card{background:rgba(250,246,241,0.06);border:1px solid rgba(250,246,241,0.1);border-radius:16px;padding:2.5rem;transition:background 0.3s}
+    .testi-card:hover{background:rgba(250,246,241,0.09)}
+    .testi-stars{font-size:0.72rem;color:var(--terra2);letter-spacing:0.18em;margin-bottom:1.2rem}
+    .testi-q{font-size:0.9rem;color:rgba(250,246,241,0.75);line-height:1.85;font-style:italic;font-weight:300;margin-bottom:2rem;font-family:'Lora',serif}
+    .testi-person{display:flex;align-items:center;gap:1rem}
+    .testi-av{width:42px;height:42px;border-radius:50%;background:var(--terra);display:flex;align-items:center;justify-content:center;font-family:'Plus Jakarta Sans',sans-serif;font-size:1rem;font-weight:700;color:white}
+    .testi-pname{font-family:'Plus Jakarta Sans',sans-serif;font-size:0.83rem;font-weight:700;color:var(--cream)}
+    .testi-prole{font-size:0.66rem;color:rgba(250,246,241,0.4);margin-top:0.12rem}
+
+    /* PRICING */
+    .pricing{padding:7rem 4rem;background:var(--cream)}
+    .pricing-note{font-size:0.8rem;color:var(--muted);margin-top:0.5rem}
+    .pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:3.5rem}
+    .price-card{background:var(--white);border-radius:20px;padding:2.5rem;border:1px solid var(--border);position:relative;transition:all 0.3s}
+    .price-card:hover{transform:translateY(-4px);box-shadow:0 20px 48px rgba(61,43,31,0.1)}
+    .price-card.featured{background:var(--terra);border-color:var(--terra);transform:scale(1.04)}
+    .price-card.featured:hover{transform:scale(1.04) translateY(-4px)}
+    .feat-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--brown);color:var(--cream);font-family:'Plus Jakarta Sans',sans-serif;font-size:0.6rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:0.3rem 1rem;border-radius:100px}
+    .price-plan{font-family:'Plus Jakarta Sans',sans-serif;font-size:0.75rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--terra);margin-bottom:1rem}
+    .price-card.featured .price-plan{color:rgba(255,255,255,0.75)}
+    .price-amount{font-family:'Plus Jakarta Sans',sans-serif;font-size:2.8rem;font-weight:800;color:var(--brown);letter-spacing:-0.03em;line-height:1}
+    .price-card.featured .price-amount{color:white}
+    .price-period{font-size:0.78rem;color:var(--muted);margin-top:0.3rem;margin-bottom:1.5rem}
+    .price-card.featured .price-period{color:rgba(255,255,255,0.65)}
+    .price-desc{font-size:0.82rem;color:var(--brown2);line-height:1.7;margin-bottom:1.8rem;font-weight:300}
+    .price-card.featured .price-desc{color:rgba(255,255,255,0.8)}
+    .price-feats{list-style:none;display:flex;flex-direction:column;gap:0.75rem;margin-bottom:2rem}
+    .price-feats li{font-size:0.78rem;color:var(--brown2);display:flex;align-items:center;gap:0.6rem}
+    .price-card.featured .price-feats li{color:rgba(255,255,255,0.85)}
+    .price-feats li::before{content:'✓';font-size:0.7rem;font-weight:700;color:var(--sage);flex-shrink:0}
+    .price-card.featured .price-feats li::before{color:rgba(255,255,255,0.7)}
+    .price-cta{display:block;text-align:center;padding:0.85rem;background:var(--terra-light);color:var(--terra);font-family:'Plus Jakarta Sans',sans-serif;font-size:0.75rem;font-weight:700;text-decoration:none;border-radius:10px;letter-spacing:0.04em;transition:all 0.25s}
+    .price-cta:hover{background:var(--terra);color:white}
+    .price-card.featured .price-cta{background:white;color:var(--terra)}
+    .price-card.featured .price-cta:hover{background:var(--cream)}
+    .pricing-disc{text-align:center;font-size:0.78rem;color:var(--muted);margin-top:2rem;font-style:italic}
+
+    /* FAQ */
+    .faq{padding:7rem 4rem;background:var(--sand)}
+    .faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:3.5rem}
+    .faq-item{background:var(--white);border-radius:12px;padding:1.8rem;border:1px solid var(--border);cursor:pointer;transition:all 0.25s;user-select:none}
+    .faq-item:hover{border-color:var(--terra)}
+    .faq-q{font-family:'Plus Jakarta Sans',sans-serif;font-size:0.88rem;font-weight:700;color:var(--brown);display:flex;justify-content:space-between;align-items:center;gap:1rem}
+    .faq-icon{color:var(--terra);font-size:1.4rem;line-height:1;transition:transform 0.3s;flex-shrink:0;font-weight:300}
+    .faq-item.open .faq-icon{transform:rotate(45deg)}
+    .faq-a{font-size:0.82rem;color:var(--brown2);line-height:1.75;font-weight:300;max-height:0;overflow:hidden;transition:max-height 0.35s ease,margin-top 0.35s}
+    .faq-item.open .faq-a{max-height:300px;margin-top:1rem}
+
+    /* CONTACT */
+    .contact{padding:7rem 4rem;display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:start}
+    .contact-p{font-size:0.95rem;color:var(--brown2);font-weight:300;line-height:1.8;margin:1rem 0 2rem}
+    .c-items{display:flex;flex-direction:column;gap:0.9rem}
+    .c-item{display:flex;align-items:center;gap:1rem;padding:1rem 1.2rem;background:var(--white);border:1px solid var(--border);border-radius:10px;font-size:0.83rem;color:var(--brown2);transition:border-color 0.2s}
+    .c-item:hover{border-color:var(--terra)}
+    .c-ico{width:36px;height:36px;background:var(--terra-light);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:0.95rem;flex-shrink:0}
+    .c-item a{color:var(--brown2);text-decoration:none;transition:color 0.2s}
+    .c-item a:hover{color:var(--terra)}
+    .cform{background:var(--white);border-radius:20px;padding:2.5rem;border:1px solid var(--border);box-shadow:0 8px 40px rgba(61,43,31,0.06)}
+    .cform h3{font-family:'Plus Jakarta Sans',sans-serif;font-size:1.3rem;font-weight:800;letter-spacing:-0.02em;color:var(--brown);margin-bottom:1.8rem}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+    .fg{margin-bottom:1.2rem}
+    .fl{font-size:0.6rem;letter-spacing:0.14em;text-transform:uppercase;font-weight:700;color:var(--muted);display:block;margin-bottom:0.4rem}
+    .fi,.fsel,.fta{width:100%;padding:0.8rem 1rem;background:var(--cream);border:1.5px solid var(--border);color:var(--brown);font-family:'Plus Jakarta Sans',sans-serif;font-size:0.87rem;outline:none;border-radius:8px;transition:all 0.2s}
+    .fi:focus,.fsel:focus,.fta:focus{border-color:var(--terra);background:var(--white);box-shadow:0 0 0 3px rgba(196,113,74,0.1)}
+    .fta{resize:vertical;min-height:110px}
+    .fsub{width:100%;padding:0.9rem;background:var(--terra);color:white;font-family:'Plus Jakarta Sans',sans-serif;font-size:0.77rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;border:none;border-radius:10px;cursor:pointer;transition:all 0.25s}
+    .fsub:hover{background:var(--terra2);transform:translateY(-1px);box-shadow:0 6px 20px rgba(196,113,74,0.35)}
+
+    /* FLOATING BTN */
+    .float-btn{position:fixed;bottom:2rem;right:2rem;z-index:200;display:flex;align-items:center;gap:0.6rem;padding:0.8rem 1.4rem;background:var(--terra);color:white;font-family:'Plus Jakarta Sans',sans-serif;font-size:0.72rem;font-weight:700;text-decoration:none;border-radius:100px;box-shadow:0 8px 28px rgba(196,113,74,0.45);transition:all 0.25s}
+    .float-btn:hover{background:var(--terra2);transform:translateY(-3px);box-shadow:0 12px 36px rgba(196,113,74,0.5)}
+
+    /* FOOTER */
+    footer{background:var(--brown);padding:2.5rem 4rem;display:flex;align-items:center;justify-content:space-between}
+    .f-logo{font-family:'Plus Jakarta Sans',sans-serif;font-size:1rem;font-weight:800;color:var(--cream)}
+    .f-logo span{color:var(--terra2)}
+    .f-copy{font-size:0.66rem;color:rgba(250,246,241,0.35)}
+    .f-links{display:flex;gap:2rem}
+    .f-links a{font-size:0.63rem;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:rgba(250,246,241,0.35);text-decoration:none;transition:color 0.2s}
+    .f-links a:hover{color:var(--terra2)}
+
+    /* PORTFOLIO / SAMPLE WORKS */
+    .portfolio{padding:7rem 4rem;background:var(--cream)}
+    .port-tabs{display:flex;gap:0.5rem;flex-wrap:wrap;margin:2.5rem 0 3rem}
+    .port-tab{font-size:0.68rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:0.5rem 1.2rem;border-radius:100px;border:1.5px solid var(--border);color:var(--muted);background:var(--white);cursor:pointer;transition:all 0.2s}
+    .port-tab:hover{border-color:var(--terra);color:var(--terra)}
+    .port-tab.active{background:var(--terra);border-color:var(--terra);color:white}
+    .port-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+    .port-card{background:var(--white);border-radius:16px;border:1px solid var(--border);overflow:hidden;transition:all 0.3s;cursor:pointer}
+    .port-card:hover{transform:translateY(-5px);box-shadow:0 20px 48px rgba(61,43,31,0.1);border-color:var(--terra)}
+    .port-card[data-cat].hidden{display:none}
+    .port-preview{height:180px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:1.5rem}
+    .port-preview.bg-sand{background:var(--sand)}
+    .port-preview.bg-terra{background:var(--terra-light)}
+    .port-preview.bg-sage{background:rgba(107,158,138,0.1)}
+    .port-preview.bg-brown{background:rgba(61,43,31,0.04)}
+    /* Mini mockup styles inside previews */
+    .mock-email{width:100%;background:white;border-radius:10px;padding:1rem;box-shadow:0 4px 20px rgba(61,43,31,0.1);font-size:0.55rem;color:var(--brown)}
+    .mock-email .me-header{display:flex;align-items:center;gap:0.5rem;margin-bottom:0.7rem;padding-bottom:0.6rem;border-bottom:1px solid var(--border)}
+    .mock-email .me-avatar{width:22px;height:22px;border-radius:50%;background:var(--terra);flex-shrink:0}
+    .mock-email .me-from{font-weight:700;font-size:0.52rem;color:var(--brown)}
+    .mock-email .me-sub{font-size:0.5rem;color:var(--muted)}
+    .mock-email .me-line{height:5px;background:var(--sand2);border-radius:3px;margin-bottom:4px}
+    .mock-email .me-line.short{width:60%}
+    .mock-email .me-line.med{width:80%}
+    .mock-cal{width:100%;background:white;border-radius:10px;padding:1rem;box-shadow:0 4px 20px rgba(61,43,31,0.1)}
+    .mock-cal .mc-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:0.6rem}
+    .mock-cal .mc-title{font-size:0.55rem;font-weight:700;color:var(--brown)}
+    .mock-cal .mc-nav{font-size:0.5rem;color:var(--muted)}
+    .mock-cal .mc-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px}
+    .mock-cal .mc-day{height:16px;border-radius:3px;background:var(--sand);font-size:0.38rem;display:flex;align-items:center;justify-content:center;color:var(--muted)}
+    .mock-cal .mc-day.event{background:var(--terra);color:white}
+    .mock-cal .mc-day.today{background:var(--brown);color:white}
+    .mock-cal .mc-day.sage{background:var(--sage);color:white}
+    .mock-sop{width:100%;background:white;border-radius:10px;padding:1rem;box-shadow:0 4px 20px rgba(61,43,31,0.1)}
+    .mock-sop .ms-title{font-size:0.58rem;font-weight:800;color:var(--brown);margin-bottom:0.6rem;display:flex;align-items:center;gap:0.4rem}
+    .mock-sop .ms-step{display:flex;align-items:flex-start;gap:0.5rem;margin-bottom:0.45rem}
+    .mock-sop .ms-num{width:14px;height:14px;border-radius:50%;background:var(--terra);color:white;font-size:0.38rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+    .mock-sop .ms-text{font-size:0.48rem;color:var(--brown2);line-height:1.5}
+    .mock-sop .ms-text strong{color:var(--brown);font-weight:700}
+    .mock-report{width:100%;background:white;border-radius:10px;padding:1rem;box-shadow:0 4px 20px rgba(61,43,31,0.1)}
+    .mock-report .mr-head{font-size:0.6rem;font-weight:800;color:var(--brown);margin-bottom:0.5rem}
+    .mock-report .mr-bar-wrap{margin-bottom:0.35rem}
+    .mock-report .mr-label{font-size:0.42rem;color:var(--muted);margin-bottom:2px;display:flex;justify-content:space-between}
+    .mock-report .mr-bar{height:8px;border-radius:4px;background:var(--sand2);overflow:hidden}
+    .mock-report .mr-fill{height:100%;border-radius:4px;background:var(--terra)}
+    .mock-report .mr-fill.sage{background:var(--sage)}
+    .mock-report .mr-fill.brown{background:var(--brown2)}
+    .mock-social{width:90%;background:white;border-radius:12px;padding:1rem;box-shadow:0 4px 20px rgba(61,43,31,0.1)}
+    .mock-social .mso-img{width:100%;height:60px;background:linear-gradient(135deg,var(--terra-light),var(--sand));border-radius:6px;margin-bottom:0.6rem;display:flex;align-items:center;justify-content:center;font-size:1.2rem}
+    .mock-social .mso-caption{font-size:0.47rem;color:var(--brown2);line-height:1.5;margin-bottom:0.4rem}
+    .mock-social .mso-tags{font-size:0.42rem;color:var(--terra)}
+    .mock-social .mso-stats{display:flex;gap:0.8rem;margin-top:0.5rem;font-size:0.42rem;color:var(--muted)}
+    .mock-inbox{width:100%;display:flex;flex-direction:column;gap:5px}
+    .mock-inbox .mi-row{background:white;border-radius:7px;padding:0.5rem 0.7rem;display:flex;align-items:center;gap:0.6rem;box-shadow:0 2px 8px rgba(61,43,31,0.06)}
+    .mock-inbox .mi-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+    .mock-inbox .mi-dot.unread{background:var(--terra)}
+    .mock-inbox .mi-dot.done{background:var(--sage)}
+    .mock-inbox .mi-dot.pending{background:var(--sand2)}
+    .mock-inbox .mi-name{font-size:0.48rem;font-weight:700;color:var(--brown);width:52px;flex-shrink:0}
+    .mock-inbox .mi-subject{font-size:0.44rem;color:var(--muted);flex:1}
+    .mock-inbox .mi-tag{font-size:0.38rem;padding:1px 5px;border-radius:3px;background:var(--terra-light);color:var(--terra);flex-shrink:0}
+    .mock-inbox .mi-tag.green{background:rgba(107,158,138,0.15);color:var(--sage)}
+    /* Port card info */
+    .port-info{padding:1.4rem 1.6rem}
+    .port-cat{font-size:0.58rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--terra);font-weight:700;margin-bottom:0.35rem}
+    .port-title{font-family:'Plus Jakarta Sans',sans-serif;font-size:0.92rem;font-weight:700;color:var(--brown);margin-bottom:0.35rem}
+    .port-desc{font-size:0.74rem;color:var(--muted);line-height:1.65}
+    .port-tags{display:flex;flex-wrap:wrap;gap:0.3rem;margin-top:0.8rem}
+    .port-tag{font-size:0.6rem;padding:0.22rem 0.65rem;border-radius:5px;background:var(--sand);color:var(--brown2)}
+
+    /* CERTIFICATIONS */
+    .certs{padding:7rem 4rem;background:var(--brown)}
+    .certs .eyebrow{color:var(--terra2)}
+    .certs .eyebrow::before{background:var(--terra2)}
+    .certs .s-title{color:var(--cream)}
+    .certs-intro{font-size:0.9rem;color:rgba(250,246,241,0.6);font-weight:300;line-height:1.75;max-width:520px;margin-top:0.8rem}
+    .certs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:3.5rem}
+    .cert-card{background:rgba(250,246,241,0.05);border:1px solid rgba(250,246,241,0.1);border-radius:14px;padding:1.6rem;display:flex;flex-direction:column;gap:0.9rem;transition:all 0.25s;position:relative;overflow:hidden}
+    .cert-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--terra),var(--terra2));transform:scaleX(0);transform-origin:left;transition:transform 0.3s}
+    .cert-card:hover{background:rgba(250,246,241,0.09);border-color:rgba(196,113,74,0.4);transform:translateY(-3px)}
+    .cert-card:hover::before{transform:scaleX(1)}
+    .cert-top{display:flex;align-items:flex-start;justify-content:space-between;gap:0.8rem}
+    .cert-issuer-badge{font-size:0.55rem;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;padding:0.3rem 0.7rem;border-radius:5px;flex-shrink:0}
+    .cert-issuer-badge.acams{background:rgba(196,113,74,0.2);color:var(--terra2)}
+    .cert-issuer-badge.amlc{background:rgba(107,158,138,0.2);color:#8fcfbd}
+    .cert-issuer-badge.bsp{background:rgba(250,246,241,0.1);color:rgba(250,246,241,0.6)}
+    .cert-issuer-badge.rbap{background:rgba(212,132,94,0.15);color:var(--terra2)}
+    .cert-issuer-badge.brighttalk{background:rgba(107,158,138,0.15);color:#8fcfbd}
+    .cert-issuer-badge.sumsub{background:rgba(196,113,74,0.15);color:var(--terra2)}
+    .cert-verified{font-size:0.6rem;color:var(--sage);display:flex;align-items:center;gap:0.3rem}
+    .cert-title{font-family:'Plus Jakarta Sans',sans-serif;font-size:0.82rem;font-weight:700;color:var(--cream);line-height:1.45}
+    .cert-meta{font-size:0.68rem;color:rgba(250,246,241,0.35);display:flex;align-items:center;gap:0.5rem}
+    .cert-dot{width:3px;height:3px;border-radius:50%;background:rgba(250,246,241,0.2);flex-shrink:0}
+    .certs-bottom{margin-top:3rem;display:flex;align-items:center;justify-content:space-between;padding:2rem 2.5rem;background:rgba(250,246,241,0.04);border:1px solid rgba(250,246,241,0.08);border-radius:16px;gap:2rem;flex-wrap:wrap}
+    .certs-bottom-text h3{font-family:'Plus Jakarta Sans',sans-serif;font-size:1.05rem;font-weight:800;color:var(--cream);margin-bottom:0.3rem}
+    .certs-bottom-text p{font-size:0.8rem;color:rgba(250,246,241,0.5);font-weight:300}
+    .btn-request{display:inline-flex;align-items:center;gap:0.6rem;padding:0.85rem 1.8rem;background:var(--terra);color:white;font-family:'Plus Jakarta Sans',sans-serif;font-size:0.75rem;font-weight:700;letter-spacing:0.04em;text-decoration:none;border-radius:100px;transition:all 0.25s;white-space:nowrap}
+    .btn-request:hover{background:var(--terra2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(196,113,74,0.4)}
+    .certs-count{display:flex;gap:2rem;flex-wrap:wrap}
+    .cc-item{text-align:center}
+    .cc-n{font-family:'Plus Jakarta Sans',sans-serif;font-size:1.8rem;font-weight:800;color:var(--terra2);line-height:1}
+    .cc-l{font-size:0.58rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(250,246,241,0.35);margin-top:0.2rem}
+
+    /* AVAILABILITY BANNER */
+    .avail-banner{background:var(--sage);padding:0.75rem 4rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+    .avail-left{display:flex;align-items:center;gap:1rem}
+    .avail-dot{width:10px;height:10px;background:white;border-radius:50%;animation:pulse 2s infinite;flex-shrink:0}
+    .avail-text{font-size:0.72rem;font-weight:700;color:white;letter-spacing:0.04em}
+    .avail-text span{opacity:0.8;font-weight:400}
+    .avail-meta{display:flex;gap:1.5rem;flex-wrap:wrap}
+    .avail-chip{font-size:0.65rem;color:rgba(255,255,255,0.85);display:flex;align-items:center;gap:0.4rem}
+    .avail-chip::before{content:'';width:5px;height:5px;background:rgba(255,255,255,0.5);border-radius:50%;flex-shrink:0}
+
+    /* PROCESS */
+    .process{padding:7rem 4rem;background:var(--white)}
+    .process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:3.5rem;position:relative}
+    .process-grid::before{content:'';position:absolute;top:2.2rem;left:calc(12.5% + 1rem);right:calc(12.5% + 1rem);height:2px;background:repeating-linear-gradient(90deg,var(--terra) 0,var(--terra) 8px,transparent 8px,transparent 16px);opacity:0.3;pointer-events:none}
+    .proc-step{text-align:center;padding:0 1.5rem;position:relative}
+    .proc-num{width:48px;height:48px;border-radius:50%;background:var(--terra);color:white;font-family:'Plus Jakarta Sans',sans-serif;font-size:1rem;font-weight:800;display:flex;align-items:center;justify-content:center;margin:0 auto 1.2rem;position:relative;z-index:1;transition:transform 0.25s,box-shadow 0.25s}
+    .proc-step:hover .proc-num{transform:scale(1.1);box-shadow:0 8px 24px rgba(196,113,74,0.35)}
+    .proc-icon{font-size:1.4rem;margin-bottom:0.5rem}
+    .proc-title{font-family:'Plus Jakarta Sans',sans-serif;font-size:0.9rem;font-weight:700;color:var(--brown);margin-bottom:0.5rem}
+    .proc-desc{font-size:0.75rem;color:var(--muted);line-height:1.7}
+    .proc-time{display:inline-block;margin-top:0.6rem;font-size:0.62rem;font-weight:700;color:var(--terra);background:var(--terra-light);padding:0.2rem 0.6rem;border-radius:100px}
+
+    /* BY THE NUMBERS */
+    .numbers{padding:6rem 4rem;background:var(--terra)}
+    .numbers-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:rgba(255,255,255,0.15);border-radius:16px;overflow:hidden;margin-top:3rem}
+    .num-item{background:rgba(255,255,255,0.08);padding:2.2rem 1.5rem;text-align:center;transition:background 0.2s}
+    .num-item:hover{background:rgba(255,255,255,0.15)}
+    .num-n{font-family:'Plus Jakarta Sans',sans-serif;font-size:2.4rem;font-weight:800;color:white;line-height:1;letter-spacing:-0.03em}
+    .num-n sup{font-size:1rem;font-weight:600;vertical-align:super}
+    .num-label{font-size:0.62rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.65);margin-top:0.5rem;font-weight:600;line-height:1.4}
+
+    /* LANGUAGES + WHATSAPP */
+    .lang-wa{padding:3.5rem 4rem;background:var(--sand);display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+    .lang-block{display:flex;align-items:center;gap:2rem;flex-wrap:wrap}
+    .lang-label{font-size:0.63rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted);font-weight:700}
+    .lang-items{display:flex;gap:0.8rem;flex-wrap:wrap}
+    .lang-item{display:flex;align-items:center;gap:0.5rem;padding:0.5rem 1rem;background:var(--white);border:1px solid var(--border);border-radius:100px;font-size:0.75rem;font-weight:600;color:var(--brown2);transition:all 0.2s}
+    .lang-item:hover{border-color:var(--terra);color:var(--terra)}
+    .lang-flag{font-size:1rem}
+    .lang-level{font-size:0.6rem;color:var(--muted);font-weight:400}
+    .wa-btn{display:inline-flex;align-items:center;gap:0.7rem;padding:0.9rem 1.8rem;background:#25D366;color:white;font-family:'Plus Jakarta Sans',sans-serif;font-size:0.78rem;font-weight:700;text-decoration:none;border-radius:100px;transition:all 0.25s;box-shadow:0 4px 16px rgba(37,211,102,0.3)}
+    .wa-btn:hover{background:#1ebe5d;transform:translateY(-2px);box-shadow:0 8px 28px rgba(37,211,102,0.4)}
+    .wa-icon{font-size:1.1rem}
+    .meet-btn{display:inline-flex;align-items:center;gap:0.7rem;padding:0.9rem 1.8rem;background:var(--white);color:var(--brown);border:1.5px solid var(--border);font-family:'Plus Jakarta Sans',sans-serif;font-size:0.78rem;font-weight:700;text-decoration:none;border-radius:100px;transition:all 0.25s}
+    .meet-btn:hover{border-color:var(--terra);color:var(--terra);transform:translateY(-2px);box-shadow:0 6px 20px rgba(61,43,31,0.08)}
+    .quick-btns{display:flex;gap:0.8rem;flex-wrap:wrap;align-items:center}
+
+    /* EMPLOYER LOGOS STRIP */
+    .logos-strip{padding:3rem 4rem;background:var(--white);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+    .logos-strip-label{font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);font-weight:700;text-align:center;margin-bottom:1.8rem}
+    .logos-row{display:flex;align-items:center;justify-content:center;gap:3rem;flex-wrap:wrap}
+    .logo-badge{display:flex;flex-direction:column;align-items:center;gap:0.4rem;opacity:0.55;transition:opacity 0.2s;cursor:default}
+    .logo-badge:hover{opacity:1}
+    .logo-icon{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.3rem}
+    .logo-icon.bank{background:linear-gradient(135deg,#1a4a7a,#2d6db5)}
+    .logo-icon.fintech{background:linear-gradient(135deg,#1a7a4a,#2db56d)}
+    .logo-icon.tech{background:linear-gradient(135deg,#4a1a7a,#7a2db5)}
+    .logo-icon.ops{background:linear-gradient(135deg,#7a4a1a,#b5802d)}
+    .logo-name{font-size:0.65rem;font-weight:800;color:var(--brown2);letter-spacing:0.04em}
+    .logo-role{font-size:0.55rem;color:var(--muted)}
+
+    /* MOBILE NAV */
+    .nav-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none}
+    .nav-toggle span{display:block;width:22px;height:2px;background:var(--brown);border-radius:2px;transition:all 0.3s}
+    .nav-toggle.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+    .nav-toggle.open span:nth-child(2){opacity:0}
+    .nav-toggle.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+    .nav-mobile{display:none;position:fixed;top:70px;left:0;right:0;background:rgba(250,246,241,0.98);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:1.5rem 1.5rem 2rem;flex-direction:column;gap:0;z-index:99;box-shadow:0 8px 32px rgba(61,43,31,0.1)}
+    .nav-mobile.open{display:flex}
+    .nav-mobile a{font-size:0.85rem;font-weight:600;color:var(--brown2);text-decoration:none;padding:0.75rem 0;border-bottom:1px solid var(--border);letter-spacing:0.04em;transition:color 0.2s}
+    .nav-mobile a:hover{color:var(--terra)}
+    .nav-mobile a:last-child{border-bottom:none;margin-top:0.5rem;background:var(--terra);color:white;text-align:center;border-radius:10px;padding:0.85rem}
+
+    /* SCROLL TO TOP */
+    .scroll-top{position:fixed;bottom:5.5rem;right:2rem;z-index:199;width:40px;height:40px;background:var(--white);border:1.5px solid var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1rem;color:var(--terra);box-shadow:0 4px 16px rgba(61,43,31,0.1);transition:all 0.25s;opacity:0;pointer-events:none}
+    .scroll-top.visible{opacity:1;pointer-events:all}
+    .scroll-top:hover{background:var(--terra);color:white;border-color:var(--terra);transform:translateY(-2px)}
+
+    /* RESPONSIVE */
+    @media(max-width:1024px){
+      nav{padding:0 1.5rem}
+      .nav-links{display:none}
+      .nav-toggle{display:flex}
+      .logos-strip{padding:2.5rem 1.5rem}
+      .logos-row{gap:1.5rem}
+      .hero{grid-template-columns:1fr}
+      .hero-content{padding:3rem 1.5rem}
+      .hero-photo{height:70vw}
+      .hero-float{left:1rem}
+      .about,.why,.contact{grid-template-columns:1fr;gap:3rem;padding:4rem 1.5rem}
+      .services,.ideal,.testi,.pricing,.faq{padding:4rem 1.5rem}
+      .mid-cta{padding:3rem 1.5rem;flex-direction:column}
+      .svc-grid{grid-template-columns:1fr 1fr}
+      .ideal-grid{grid-template-columns:1fr 1fr}
+      .testi-grid{grid-template-columns:1fr}
+      .pricing-grid{grid-template-columns:1fr}
+      .price-card.featured{transform:none}
+      .faq-grid{grid-template-columns:1fr}
+      .stats{grid-template-columns:repeat(2,1fr)}
+      .svc-head{flex-direction:column;align-items:flex-start}
+      .why-photo{display:none}
+      footer{padding:2rem 1.5rem;flex-direction:column;gap:1rem;text-align:center}
+      .process,.numbers,.lang-wa{padding:4rem 1.5rem}
+      .process-grid{grid-template-columns:1fr 1fr;gap:2rem}
+      .process-grid::before{display:none}
+      .numbers-grid{grid-template-columns:repeat(3,1fr)}
+      .avail-banner{padding:0.75rem 1.5rem}
+      .lang-wa{flex-direction:column;align-items:flex-start}
+    }
+    @media(max-width:580px){
+      .certs{padding:4rem 1.5rem}
+      .certs-grid{grid-template-columns:1fr}
+      .certs-bottom{flex-direction:column;align-items:flex-start}
+      .portfolio{padding:4rem 1.5rem}
+      .svc-grid,.ideal-grid,.port-grid{grid-template-columns:1fr}
+      .process-grid,.numbers-grid{grid-template-columns:1fr 1fr}
+      .form-row{grid-template-columns:1fr}
+      .hero-ctas{flex-direction:column;align-items:flex-start}
+    }
+  </style>
+</head>
+<body>
+
+<a href="#contact" class="float-btn">✉ Let's Talk</a>
+<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">↑</button>
+
+<nav id="nav">
+  <a class="nav-logo" href="#">Baby Jane<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#works">Works</a></li>
+    <li><a href="#certs">Certifications</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="https://www.linkedin.com/in/baby-jane-magro-96b888292/" target="_blank">LinkedIn ↗</a></li>
+    <li><a href="#contact" class="nav-btn">Hire Me ↗</a></li>
+  </ul>
+  <button class="nav-toggle" id="navToggle" onclick="toggleMobileNav()" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE NAV -->
+<div class="nav-mobile" id="navMobile">
+  <a href="#about" onclick="closeMobileNav()">About</a>
+  <a href="#services" onclick="closeMobileNav()">Services</a>
+  <a href="#works" onclick="closeMobileNav()">Sample Work</a>
+  <a href="#certs" onclick="closeMobileNav()">Certifications</a>
+  <a href="#pricing" onclick="closeMobileNav()">Pricing</a>
+  <a href="#faq" onclick="closeMobileNav()">FAQ</a>
+  <a href="#contact" onclick="closeMobileNav()">Hire Me ↗</a>
+</div>
+
+<!-- AVAILABILITY BANNER -->
+<div class="avail-banner">
+  <div class="avail-left">
+    <span class="avail-dot"></span>
+    <span class="avail-text">Available for new clients <span>— accepting 2–3 projects this month</span></span>
+  </div>
+  <div class="avail-meta">
+    <span class="avail-chip">📍 NCR, Philippines</span>
+    <span class="avail-chip">🕐 UTC+8 · Flexible hours</span>
+    <span class="avail-chip">💬 Replies within 24hrs</span>
+    <span class="avail-chip">🌐 Worldwide clients welcome</span>
+  </div>
+</div>
+
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-pill"><span class="pulse"></span>Available for new clients</div>
+    <h1 class="hero-h1">Your Business,<br><span class="italic-line">Handled.</span></h1>
+    <p class="hero-p">Hi, I'm <strong>Baby Jane</strong> — a Virtual Assistant with 10+ years of corporate experience in banking, compliance &amp; operations. I help busy founders and executives <em>reclaim their time</em> and run their business with precision.</p>
+    <div class="hero-tags">
+      <span class="htag">Admin &amp; Scheduling</span><span class="htag">Operations Support</span>
+      <span class="htag">Research &amp; Reports</span><span class="htag">Customer Support</span>
+      <span class="htag">Social Media</span><span class="htag">Content Writing</span>
+    </div>
+    <div class="hero-ctas">
+      <a href="#contact" class="btn-p">Work With Me ↗</a>
+      <a href="YOUR_GOOGLE_CALENDAR_BOOKING_URL" class="btn-s" target="_blank">📅 Book a Free Call</a>
+    </div>
+    <p class="hero-scarcity"><span class="s-dot"></span>Currently accepting 2–3 new clients this month</p>
+  </div>
+  <div class="hero-photo">
+    <!-- Replace with your photo: images/hero.jpg -->
+    <img src="images/bjmgr.PNG" alt="Baby Jane Magro Rodriguez"/>
+    <div class="hero-float"><p class="hf-label">Experience</p><p class="hf-val">10+</p><p class="hf-sub">Years Corporate</p></div>
+  </div>
+</section>
+
+<div class="ticker"><div class="ticker-track">
+  <span class="ti">Executive Admin</span><span class="ti">Operations Support</span><span class="ti">Research &amp; Reports</span><span class="ti">Customer Care</span><span class="ti">Social Media</span><span class="ti">Content Writing</span><span class="ti">Process Docs</span><span class="ti">Calendar Management</span>
+  <span class="ti">Executive Admin</span><span class="ti">Operations Support</span><span class="ti">Research &amp; Reports</span><span class="ti">Customer Care</span><span class="ti">Social Media</span><span class="ti">Content Writing</span><span class="ti">Process Docs</span><span class="ti">Calendar Management</span>
+</div></div>
+
+<div class="stats">
+  <div class="stat"><p class="stat-n">10+</p><p class="stat-l">Years Corporate Exp</p></div>
+  <div class="stat"><p class="stat-n">4</p><p class="stat-l">Industries</p></div>
+  <div class="stat"><p class="stat-n">100%</p><p class="stat-l">Dedicated to You</p></div>
+  <div class="stat"><p class="stat-n">24h</p><p class="stat-l">Response Time</p></div>
+</div>
+
+<!-- EMPLOYER LOGOS STRIP -->
+<div class="logos-strip">
+  <p class="logos-strip-label">Experience from</p>
+  <div class="logos-row">
+    <div class="logo-badge">
+      <div class="logo-icon bank">🏦</div>
+      <p class="logo-name">OwnBank</p>
+      <p class="logo-role">Head, AML Unit</p>
+    </div>
+    <div class="logo-badge">
+      <div class="logo-icon fintech">💳</div>
+      <p class="logo-name">TayoCash</p>
+      <p class="logo-role">AML Compliance Officer</p>
+    </div>
+    <div class="logo-badge">
+      <div class="logo-icon tech">💻</div>
+      <p class="logo-name">OpenText</p>
+      <p class="logo-role">Customer Care Rep</p>
+    </div>
+    <div class="logo-badge">
+      <div class="logo-icon ops">🌍</div>
+      <p class="logo-name">LePont LLC</p>
+      <p class="logo-role">Operations Manager · Dubai</p>
+    </div>
+  </div>
+</div>
+
+<section class="about" id="about">
+  <div>
+    <p class="eyebrow">About Me</p>
+    <h2 class="s-title">More than a VA —<br>a <em>true partner</em></h2><br>
+    <p class="about-body">I'm Baby Jane, and I bring something most VAs can't — <strong>real corporate experience</strong>. Before offering VA services, I spent 10+ years in banking, fintech, and operations, building compliance frameworks, managing processes, and supporting executives in fast-paced environments.</p>
+    <p class="about-body">That background gives me a rare edge: I think strategically, work independently, handle sensitive data with discretion, and deliver results — not just tasks.</p>
+    <div class="about-hl"><p><strong>My promise:</strong> I treat your business like my own. Every email, every task, every deadline — handled with the care and precision I brought to high-stakes corporate work.</p></div>
+    <p class="tools-t">Tools &amp; Platforms</p>
+    <div class="tools">
+      <span class="tool">Google Workspace</span><span class="tool">MS Office</span><span class="tool">Notion</span><span class="tool">Trello</span><span class="tool">Asana</span><span class="tool">Slack</span><span class="tool">Zoom</span><span class="tool">Canva</span><span class="tool">CRM Tools</span><span class="tool">Meta Business</span><span class="tool">Hootsuite</span><span class="tool">ChatGPT</span>
+    </div>
+  </div>
+  <div>
+    <p class="eyebrow">My Background</p>
+    <h2 class="s-title">Built through <em>real experience</em></h2><br>
+    <div class="tl">
+      <div class="tl-item"><p class="tl-role">Head, AML Unit</p><p class="tl-co">OwnBank · Digital Bank</p><p class="tl-date">Dec 2025 – Present · Taguig, Philippines</p></div>
+      <div class="tl-item"><p class="tl-role">AML Compliance Officer</p><p class="tl-co">TayoCash Incorporated · Fintech</p><p class="tl-date">Jun 2022 – May 2025 · 3 Years · Pasig, PH</p></div>
+      <div class="tl-item"><p class="tl-role">Customer Care Representative</p><p class="tl-co">OpenText · Enterprise Tech</p><p class="tl-date">Nov 2019 – Jun 2021 · Makati, PH</p></div>
+      <div class="tl-item"><p class="tl-role">Operations Manager</p><p class="tl-co">LePont LLC</p><p class="tl-date">Oct 2016 – Nov 2019 · 3 Years · Dubai, UAE</p></div>
+      <div class="tl-item"><p class="tl-role">Bachelor of Secondary Education</p><p class="tl-co">National College of Business and Arts</p><p class="tl-date">2005–2009 · Fairview, Quezon City</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="services" id="services">
+  <div class="svc-head">
+    <div><p class="eyebrow">What I Offer</p><h2 class="s-title">Services that <em>move</em><br>your business forward</h2></div>
+    <p class="svc-head-p">Everything backed by real corporate experience. I don't just complete tasks — I understand your business and deliver results that actually matter.</p>
+  </div>
+  <div class="svc-grid">
+    <div class="svc"><div class="svc-icon">🗂️</div><h3 class="svc-title">Admin &amp; Scheduling</h3><p class="svc-desc">Seamless day-to-day admin so nothing falls through the cracks and your calendar works for you.</p><ul class="svc-list"><li>Calendar &amp; appointment management</li><li>Email inbox management</li><li>Data entry &amp; file organization</li><li>Travel &amp; meeting coordination</li></ul></div>
+    <div class="svc"><div class="svc-icon">⚙️</div><h3 class="svc-title">Operations Support</h3><p class="svc-desc">Drawing from my experience as an Operations Manager, I bring structure and clarity to your workflows.</p><ul class="svc-list"><li>SOP &amp; process documentation</li><li>Project coordination</li><li>Workflow optimization</li><li>Team task management</li></ul></div>
+    <div class="svc"><div class="svc-icon">🔍</div><h3 class="svc-title">Research &amp; Reports</h3><p class="svc-desc">Deep, accurate research and professionally written reports — honed through years of compliance work.</p><ul class="svc-list"><li>Market &amp; competitor research</li><li>Report writing &amp; summaries</li><li>Data gathering &amp; analysis</li><li>Presentation preparation</li></ul></div>
+    <div class="svc"><div class="svc-icon">🎧</div><h3 class="svc-title">Customer Support</h3><p class="svc-desc">Professional, empathetic, and solutions-focused. Your clients will always feel heard and cared for.</p><ul class="svc-list"><li>Email &amp; chat support</li><li>Client onboarding assistance</li><li>Complaint &amp; inquiry handling</li><li>CRM management</li></ul></div>
+    <div class="svc"><div class="svc-icon">📱</div><h3 class="svc-title">Social Media Management</h3><p class="svc-desc">Consistent, on-brand content that builds your presence and keeps your audience engaged effortlessly.</p><ul class="svc-list"><li>Content planning &amp; scheduling</li><li>Caption writing &amp; hashtags</li><li>Community engagement</li><li>Performance tracking</li></ul></div>
+    <div class="svc"><div class="svc-icon">✍️</div><h3 class="svc-title">Content &amp; Copywriting</h3><p class="svc-desc">Clear, professional writing that sounds like you — from newsletters and blogs to business correspondence.</p><ul class="svc-list"><li>Blog &amp; article writing</li><li>Email newsletters</li><li>Business correspondence</li><li>Proofreading &amp; editing</li></ul></div>
+  </div>
+</section>
+
+<div class="mid-cta">
+  <div><h2>Ready to stop doing everything yourself?</h2><p>Let me handle the tasks that drain your time so you can focus on what you do best.</p></div>
+  <a href="#contact" class="btn-white">Let's Get Started ↗</a>
+</div>
+
+<!-- BY THE NUMBERS -->
+<section class="numbers">
+  <p class="eyebrow" style="color:rgba(255,255,255,0.6)">By The Numbers</p>
+  <h2 class="s-title" style="color:white">A career built on <em style="color:rgba(255,255,255,0.7)">real impact</em></h2>
+  <div class="numbers-grid">
+    <div class="num-item">
+      <p class="num-n">10<sup>+</sup></p>
+      <p class="num-label">Years of Corporate Experience</p>
+    </div>
+    <div class="num-item">
+      <p class="num-n">3</p>
+      <p class="num-label">Years AML Compliance Lead</p>
+    </div>
+    <div class="num-item">
+      <p class="num-n">4</p>
+      <p class="num-label">Countries Worked In</p>
+    </div>
+    <div class="num-item">
+      <p class="num-n">15<sup>+</sup></p>
+      <p class="num-label">Professional Certifications</p>
+    </div>
+    <div class="num-item">
+      <p class="num-n">24h</p>
+      <p class="num-label">Guaranteed Response Time</p>
+    </div>
+  </div>
+</section>
+
+<!-- LANGUAGES + QUICK CONTACT -->
+<div class="lang-wa">
+  <div class="lang-block">
+    <span class="lang-label">Languages</span>
+    <div class="lang-items">
+      <div class="lang-item"><span class="lang-flag">🇵🇭</span> Filipino <span class="lang-level">· Native</span></div>
+      <div class="lang-item"><span class="lang-flag">🇺🇸</span> English <span class="lang-level">· Fluent</span></div>
+    </div>
+  </div>
+  <div class="quick-btns">
+    <a href="https://wa.me/639062858178?text=Hi%20Baby%20Jane!%20I%20saw%20your%20portfolio%20and%20I'm%20interested%20in%20working%20with%20you." class="wa-btn" target="_blank">
+      <span class="wa-icon">💬</span> Chat on WhatsApp
+    </a>
+    <a href="https://calendar.app.google/jCp9xYLNKikETnNq8" class="meet-btn" target="_blank" id="meetBtn">
+      📅 Book a Free Discovery Call
+    </a>
+  </div>
+</div>
+
+<section class="why" id="why">
+  <div class="why-photo">
+    <!-- Replace with your photo: images/about.jpg -->
+    <img src="images/bjmgr.PNG" alt="Baby Jane Magro Rodriguez"/>
+    <div class="why-badge"><p class="wb-n">NCR</p><p class="wb-l">Philippines</p></div>
+  </div>
+  <div>
+    <p class="eyebrow">Why Choose Me</p>
+    <h2 class="s-title">What sets me <em>apart</em></h2>
+    <div class="why-pts">
+      <div class="why-pt"><span class="why-n">01</span><div><p class="why-title">Corporate-Grade Precision</p><p class="why-desc">Years in compliance taught me that accuracy isn't optional. I bring that zero-error mindset to every task — your business deserves nothing less.</p></div></div>
+      <div class="why-pt"><span class="why-n">02</span><div><p class="why-title">Trusted with Sensitive Information</p><p class="why-desc">I've handled confidential financial data and sensitive records throughout my career. Discretion and integrity are non-negotiable for me.</p></div></div>
+      <div class="why-pt"><span class="why-n">03</span><div><p class="why-title">Proactive, Not Just Reactive</p><p class="why-desc">I study your business, anticipate your needs, and solve problems before they reach you. That's the executive mindset I bring.</p></div></div>
+      <div class="why-pt"><span class="why-n">04</span><div><p class="why-title">Clear &amp; Professional Communicator</p><p class="why-desc">From working with regulators to supporting clients and leading teams — I communicate with clarity, warmth, and professionalism at every level.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="ideal" id="clients">
+  <p class="eyebrow">Who I Work With</p>
+  <h2 class="s-title">My ideal <em>clients</em></h2>
+  <div class="ideal-grid">
+    <div class="ideal-card"><span class="ideal-emoji">⚖️</span><h3 class="ideal-title">Lawyers &amp; Law Firms</h3><p class="ideal-desc">Need someone who understands confidentiality, handles documentation with care, and keeps everything organized.</p></div>
+    <div class="ideal-card"><span class="ideal-emoji">💹</span><h3 class="ideal-title">Finance Professionals</h3><p class="ideal-desc">My compliance background means I understand your world — reports, risk, and regulatory nuance included.</p></div>
+    <div class="ideal-card"><span class="ideal-emoji">🚀</span><h3 class="ideal-title">Startup Founders</h3><p class="ideal-desc">Fast-moving and need someone who can keep up, wear many hats, and bring operational clarity to the chaos.</p></div>
+    <div class="ideal-card"><span class="ideal-emoji">🎯</span><h3 class="ideal-title">Coaches &amp; Consultants</h3><p class="ideal-desc">Focus on your clients while I run everything behind the scenes — scheduling, content, admin, and more.</p></div>
+  </div>
+</section>
+
+<!-- HOW WE WORK TOGETHER -->
+<section class="process" id="process">
+  <p class="eyebrow">How It Works</p>
+  <h2 class="s-title">From first message to <em>results</em></h2>
+  <div class="process-grid">
+    <div class="proc-step">
+      <div class="proc-num">1</div>
+      <div class="proc-icon">💬</div>
+      <p class="proc-title">Discovery Call</p>
+      <p class="proc-desc">We chat for 30 minutes — free. I learn your business, pain points, and what tasks drain your time most.</p>
+      <span class="proc-time">Day 1 · Free</span>
+    </div>
+    <div class="proc-step">
+      <div class="proc-num">2</div>
+      <div class="proc-icon">📋</div>
+      <p class="proc-title">Custom Plan</p>
+      <p class="proc-desc">I send a tailored proposal with scope, hours, and pricing. No cookie-cutter packages — built around your needs.</p>
+      <span class="proc-time">Day 2–3</span>
+    </div>
+    <div class="proc-step">
+      <div class="proc-num">3</div>
+      <div class="proc-icon">🚀</div>
+      <p class="proc-title">Onboarding</p>
+      <p class="proc-desc">We align on tools, workflows, and communication style. I get up to speed fast — most clients feel the difference in week one.</p>
+      <span class="proc-time">Day 4–7</span>
+    </div>
+    <div class="proc-step">
+      <div class="proc-num">4</div>
+      <div class="proc-icon">✅</div>
+      <p class="proc-title">Ongoing Delivery</p>
+      <p class="proc-desc">Tasks handled, deadlines met, updates shared. Regular check-ins to make sure everything keeps running smoothly.</p>
+      <span class="proc-time">Week 2 onward</span>
+    </div>
+  </div>
+</section>
+
+<section class="testi" id="testimonials">
+  <p class="eyebrow">Testimonials</p>
+  <h2 class="s-title">What people <em>say</em></h2>
+  <div class="testi-grid">
+    <div class="testi-card"><p class="testi-stars">★★★★★</p><p class="testi-q">"Jane is the best kind of teammate: active listener, creative and analytical. She has an intuitive ability to smartly handle herself in any situation. Highly adaptable, encouraging, and supportive — I truly believe she can be an effective leader with her experience and professionalism at work."</p><div class="testi-person"><div class="testi-av">R</div><div><p class="testi-pname">Rachelle Mae Rubite</p><p class="testi-prole">KYC Officer · Former Colleague at TayoCash</p></div></div></div>
+    <div class="testi-card"><p class="testi-stars">★★★★★</p><p class="testi-q">"Jane consistently demonstrated a thorough understanding of regulatory requirements and exceptional diligence. Her attention to detail and analytical skills were instrumental in ensuring compliance. She always provided clear and concise guidance to both internal teams and external clients."</p><div class="testi-person"><div class="testi-av">C</div><div><p class="testi-pname">Clarke Davis</p><p class="testi-prole">Mobile Developer · Former Colleague at TayoCash</p></div></div></div>
+  </div>
+</section>
+
+<section class="portfolio" id="works">
+  <p class="eyebrow">Sample Work</p>
+  <h2 class="s-title">A glimpse of what I <em>deliver</em></h2>
+
+  <div class="port-tabs">
+    <button class="port-tab active" onclick="filterPort('all',this)">All</button>
+    <button class="port-tab" onclick="filterPort('admin',this)">Admin</button>
+    <button class="port-tab" onclick="filterPort('ops',this)">Operations</button>
+    <button class="port-tab" onclick="filterPort('social',this)">Social Media</button>
+    <button class="port-tab" onclick="filterPort('research',this)">Research</button>
+  </div>
+
+  <div class="port-grid" id="portGrid">
+
+    <!-- Email Management -->
+    <div class="port-card" data-cat="admin">
+      <div class="port-preview bg-terra">
+        <div class="mock-email">
+          <div class="me-header">
+            <div class="me-avatar"></div>
+            <div><p class="me-from">Re: Q3 Partnership Proposal</p><p class="me-sub">Drafted on behalf of CEO · Sent today</p></div>
+          </div>
+          <div class="me-line med"></div>
+          <div class="me-line"></div>
+          <div class="me-line short"></div>
+          <div style="margin-top:6px;font-size:0.45rem;color:var(--terra);font-weight:700">✓ Sent · Follow-up scheduled in 3 days</div>
+        </div>
+      </div>
+      <div class="port-info">
+        <p class="port-cat">Admin</p>
+        <p class="port-title">Executive Email Management</p>
+        <p class="port-desc">Drafting, organizing, and responding to emails on behalf of a CEO — keeping tone professional and inbox at zero.</p>
+        <div class="port-tags"><span class="port-tag">Gmail</span><span class="port-tag">Inbox Zero</span><span class="port-tag">Ghostwriting</span></div>
+      </div>
+    </div>
+
+    <!-- Calendar / Scheduling -->
+    <div class="port-card" data-cat="admin">
+      <div class="port-preview bg-sand">
+        <div class="mock-cal">
+          <div class="mc-head"><span class="mc-title">📅 March 2025</span><span class="mc-nav">◀ ▶</span></div>
+          <div class="mc-grid">
+            <div class="mc-day">M</div><div class="mc-day">T</div><div class="mc-day">W</div><div class="mc-day">T</div><div class="mc-day">F</div><div class="mc-day">S</div><div class="mc-day">S</div>
+            <div class="mc-day"></div><div class="mc-day"></div><div class="mc-day"></div><div class="mc-day"></div><div class="mc-day">1</div><div class="mc-day">2</div><div class="mc-day">3</div>
+            <div class="mc-day">4</div><div class="mc-day event">5</div><div class="mc-day">6</div><div class="mc-day sage">7</div><div class="mc-day">8</div><div class="mc-day">9</div><div class="mc-day">10</div>
+            <div class="mc-day today">11</div><div class="mc-day">12</div><div class="mc-day event">13</div><div class="mc-day">14</div><div class="mc-day sage">15</div><div class="mc-day">16</div><div class="mc-day">17</div>
+          </div>
+          <div style="margin-top:6px;display:flex;gap:6px;font-size:0.4rem">
+            <span style="color:var(--terra)">● Client call</span>
+            <span style="color:var(--sage)">● Team sync</span>
+            <span style="color:var(--brown)">● Today</span>
+          </div>
+        </div>
+      </div>
+      <div class="port-info">
+        <p class="port-cat">Admin</p>
+        <p class="port-title">Calendar & Scheduling Management</p>
+        <p class="port-desc">Full calendar ownership for a busy founder — booking calls, blocking focus time, sending reminders, zero double-bookings.</p>
+        <div class="port-tags"><span class="port-tag">Google Calendar</span><span class="port-tag">Calendly</span><span class="port-tag">Zoom</span></div>
+      </div>
+    </div>
+
+    <!-- Inbox Triage -->
+    <div class="port-card" data-cat="admin">
+      <div class="port-preview bg-brown">
+        <div class="mock-inbox">
+          <div class="mi-row"><span class="mi-dot unread"></span><span class="mi-name">Sarah M.</span><span class="mi-subject">Proposal review request — urgent</span><span class="mi-tag">Urgent</span></div>
+          <div class="mi-row"><span class="mi-dot done"></span><span class="mi-name">Vendor Co.</span><span class="mi-subject">Invoice #1042 attached</span><span class="mi-tag green">Done</span></div>
+          <div class="mi-row"><span class="mi-dot unread"></span><span class="mi-name">New Lead</span><span class="mi-subject">Interested in your services</span><span class="mi-tag">Reply</span></div>
+          <div class="mi-row"><span class="mi-dot pending"></span><span class="mi-name">Newsletter</span><span class="mi-subject">Weekly digest — filtered</span><span class="mi-tag green">Filed</span></div>
+          <div class="mi-row"><span class="mi-dot done"></span><span class="mi-name">John R.</span><span class="mi-subject">Meeting confirmed for Friday</span><span class="mi-tag green">Done</span></div>
+        </div>
+      </div>
+      <div class="port-info">
+        <p class="port-cat">Admin</p>
+        <p class="port-title">Inbox Triage & Prioritization</p>
+        <p class="port-desc">Sorting, labeling, and actioning a high-volume inbox so clients only see what matters — urgent items handled first.</p>
+        <div class="port-tags"><span class="port-tag">Outlook</span><span class="port-tag">Gmail</span><span class="port-tag">Labeling System</span></div>
+      </div>
+    </div>
+
+    <!-- SOP Documentation -->
+    <div class="port-card" data-cat="ops">
+      <div class="port-preview bg-terra">
+        <div class="mock-sop">
+          <div class="ms-title">📋 <span style="font-size:0.55rem">Client Onboarding SOP</span></div>
+          <div class="ms-step"><div class="ms-num">1</div><div class="ms-text"><strong>Send welcome email</strong> with contract + intake form within 1 hour of sign-up</div></div>
+          <div class="ms-step"><div class="ms-num">2</div><div class="ms-text"><strong>Schedule kickoff call</strong> within 48hrs — use Calendly link template</div></div>
+          <div class="ms-step"><div class="ms-num">3</div><div class="ms-text"><strong>Set up project folder</strong> in Google Drive, share access &amp; brief team</div></div>
+          <div class="ms-step"><div class="ms-num">4</div><div class="ms-text"><strong>Add to CRM</strong> &amp; set 7-day check-in reminder</div></div>
+        </div>
+      </div>
+      <div class="port-info">
+        <p class="port-cat">Operations</p>
+        <p class="port-title">SOP & Process Documentation</p>
+        <p class="port-desc">Building clear, step-by-step Standard Operating Procedures so any team member can execute processes consistently.</p>
+        <div class="port-tags"><span class="port-tag">Notion</span><span class="port-tag">Google Docs</span><span class="port-tag">Process Design</span></div>
+      </div>
+    </div>
+
+    <!-- Research Report -->
+    <div class="port-card" data-cat="research">
+      <div class="port-preview bg-sand">
+        <div class="mock-report">
+          <div class="mr-head">📊 Competitor Analysis — Q1 2025</div>
+          <div class="mr-bar-wrap">
+            <div class="mr-label"><span>Pricing Competitiveness</span><span>82%</span></div>
+            <div class="mr-bar"><div class="mr-fill" style="width:82%"></div></div>
+          </div>
+          <div class="mr-bar-wrap">
+            <div class="mr-label"><span>Social Media Presence</span><span>67%</span></div>
+            <div class="mr-bar"><div class="mr-fill sage" style="width:67%"></div></div>
+          </div>
+          <div class="mr-bar-wrap">
+            <div class="mr-label"><span>Response Time Score</span><span>91%</span></div>
+            <div class="mr-bar"><div class="mr-fill brown" style="width:91%"></div></div>
+          </div>
+          <div style="margin-top:6px;font-size:0.42rem;color:var(--muted)">Source: 12 competitors · 3 markets · Mar 2025</div>
+        </div>
+      </div>
+      <div class="port-info">
+        <p class="port-cat">Research</p>
+        <p class="port-title">Competitor Research Report</p>
+        <p class="port-desc">Deep-dive competitive analysis with data gathering, visual summaries, and strategic recommendations ready to present.</p>
+        <div class="port-tags"><span class="port-tag">Market Research</span><span class="port-tag">Data Analysis</span><span class="port-tag">Reporting</span></div>
+      </div>
+    </div>
+
+    <!-- Social Media -->
+    <div class="port-card" data-cat="social">
+      <div class="port-preview bg-sage">
+        <div class="mock-social">
+          <div class="mso-img">✨</div>
+          <div class="mso-caption">5 things I wish I knew before starting my business (save this!) 🧵 Running a business is rewarding — but no one tells you about the admin chaos...</div>
+          <div class="mso-tags">#SmallBusiness #Entrepreneur #BusinessTips #Productivity</div>
+          <div class="mso-stats"><span>❤️ 847</span><span>💬 63</span><span>🔁 212</span><span>📌 Saved: 391</span></div>
+        </div>
+      </div>
+      <div class="port-info">
+        <p class="port-cat">Social Media</p>
+        <p class="port-title">Content Creation & Scheduling</p>
+        <p class="port-desc">Writing engaging captions, planning content calendars, and scheduling posts that grow reach and drive real engagement.</p>
+        <div class="port-tags"><span class="port-tag">Instagram</span><span class="port-tag">LinkedIn</span><span class="port-tag">Canva</span><span class="port-tag">Hootsuite</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="certs" id="certs">
+  <p class="eyebrow">Certifications</p>
+  <h2 class="s-title">Verified <em>expertise</em></h2>
+  <p class="certs-intro">Industry-recognized certifications in AML, compliance, and financial crime — from globally respected institutions. Full certificates available upon request.</p>
+
+  <div class="certs-grid">
+
+    <div class="cert-card">
+      <div class="cert-top">
+        <span class="cert-issuer-badge acams">ACAMS</span>
+        <span class="cert-verified">✓ Verified</span>
+      </div>
+      <p class="cert-title">Countering DPRK Sanctions Evasion & Proliferation Financing</p>
+      <p class="cert-meta">Association of Certified AML Specialists <span class="cert-dot"></span> Financial Crime</p>
+    </div>
+
+    <div class="cert-card">
+      <div class="cert-top">
+        <span class="cert-issuer-badge acams">ACAMS</span>
+        <span class="cert-verified">✓ Verified</span>
+      </div>
+      <p class="cert-title">Enhancing Financial Inclusion with a Risk-Based Approach</p>
+      <p class="cert-meta">Association of Certified AML Specialists <span class="cert-dot"></span> Risk & Compliance</p>
+    </div>
+
+    <div class="cert-card">
+      <div class="cert-top">
+        <span class="cert-issuer-badge acams">ACAMS</span>
+        <span class="cert-verified">✓ Verified</span>
+      </div>
+      <p class="cert-title">Fraud Focus: Digging into Recent Fraud Trends & Investigations</p>
+      <p class="cert-meta">Association of Certified AML Specialists <span class="cert-dot"></span> Fraud & Investigations</p>
+    </div>
+
+    <div class="cert-card">
+      <div class="cert-top">
+        <span class="cert-issuer-badge acams">ACAMS</span>
+        <span class="cert-verified">✓ Verified</span>
+      </div>
+      <p class="cert-title">Recognizing & Responding to Insider Threats in Financial Institutions</p>
+      <p class="cert-meta">Association of Certified AML Specialists <span class="cert-dot"></span> Insider Risk</p>
+    </div>
+
+    <div class="cert-card">
+      <div class="cert-top">
+        <span class="cert-issuer-badge acams">ACAMS</span>
+        <span class="cert-verified">✓ Verified</span>
+      </div>
+      <p class="cert-title">Putting the P into KYC: Understand Risk, Trust Your Decision</p>
+      <p class="cert-meta">Association of Certified AML Specialists <span class="cert-dot"></span> KYC & Due Diligence</p>
+    </div>
+
+    <div class="cert-card">
+      <div class="cert-top">
+        <span class="cert-issuer-badge acams">ACAMS</span>
+        <span class="cert-verified">✓ Verified</span>
+      </div>
+      <p class="cert-title">The Data Advantage: Optimizing Due Diligence & Customer Experience</p>
+      <p class="cert-meta">Association of Certified AML Specialists <span class="cert-dot"></span> Data & Compliance</p>
+    </div>
+
+    <div class="cert-card">
+      <div class="cert-top">
+        <span class="cert-issuer-badge amlc">AMLC</span>
+        <span class="cert-verified">✓ Verified</span>
+      </div>
+      <p class="cert-title">AML/CTF Fundamentals</p>
+      <p class="cert-meta">Anti-Money Laundering Council · Philippines <span class="cert-dot"></span> AML/CTF</p>
+    </div>
+
+    <div class="cert-card">
+      <div class="cert-top">
+        <span class="cert-issuer-badge amlc">AMLC</span>
+        <span class="cert-verified">✓ Verified</span>
+      </div>
+      <p class="cert-title">Targeted Financial Sanctions</p>
+      <p class="cert-meta">Anti-Money Laundering Council · Philippines <span class="cert-dot"></span> Sanctions Compliance</p>
+    </div>
+
+    <div class="cert-card">
+      <div class="cert-top">
+        <span class="cert-issuer-badge brighttalk">BRIGHTTALK</span>
+        <span class="cert-verified">✓ Verified</span>
+      </div>
+      <p class="cert-title">2024 Fraud Trends & Technology</p>
+      <p class="cert-meta">BrightTALK <span class="cert-dot"></span> Fraud Prevention</p>
+    </div>
+
+    <div class="cert-card">
+      <div class="cert-top">
+        <span class="cert-issuer-badge brighttalk">BRIGHTTALK</span>
+        <span class="cert-verified">✓ Verified</span>
+      </div>
+      <p class="cert-title">Business Impersonation: Is Your KYB Strategy Up to the Challenge?</p>
+      <p class="cert-meta">BrightTALK <span class="cert-dot"></span> KYB & Identity</p>
+    </div>
+
+    <div class="cert-card">
+      <div class="cert-top">
+        <span class="cert-issuer-badge brighttalk">BRIGHTTALK</span>
+        <span class="cert-verified">✓ Verified</span>
+      </div>
+      <p class="cert-title">Fraud Schemes & Scams: Industry Trends & Consortium Solutions</p>
+      <p class="cert-meta">BrightTALK <span class="cert-dot"></span> Fraud Intelligence</p>
+    </div>
+
+    <div class="cert-card">
+      <div class="cert-top">
+        <span class="cert-issuer-badge bsp">BSP</span>
+        <span class="cert-verified">✓ Verified</span>
+      </div>
+      <p class="cert-title">Economic & Financial Learnings Program</p>
+      <p class="cert-meta">Bangko Sentral ng Pilipinas <span class="cert-dot"></span> Financial Education</p>
+    </div>
+
+    <div class="cert-card">
+      <div class="cert-top">
+        <span class="cert-issuer-badge rbap">RBAP</span>
+        <span class="cert-verified">✓ Verified</span>
+      </div>
+      <p class="cert-title">AML Intermediate Course on IRA & Transaction Monitoring</p>
+      <p class="cert-meta">Rural Bankers Association of the Philippines <span class="cert-dot"></span> AML Operations</p>
+    </div>
+
+    <div class="cert-card">
+      <div class="cert-top">
+        <span class="cert-issuer-badge rbap">RBAP</span>
+        <span class="cert-verified">✓ Verified</span>
+      </div>
+      <p class="cert-title">Basic AML & Combating Terrorism and Proliferation Financing</p>
+      <p class="cert-meta">Rural Bankers Association of the Philippines <span class="cert-dot"></span> AML/CTF Basics</p>
+    </div>
+
+    <div class="cert-card">
+      <div class="cert-top">
+        <span class="cert-issuer-badge sumsub">SUMSUB</span>
+        <span class="cert-verified">✓ Verified</span>
+      </div>
+      <p class="cert-title">Investigation of AML Cases: Manual vs Automation</p>
+      <p class="cert-meta">Sumsub <span class="cert-dot"></span> AML Investigation</p>
+    </div>
+
+  </div>
+
+  <div class="certs-bottom">
+    <div class="certs-count">
+      <div class="cc-item"><p class="cc-n">15</p><p class="cc-l">Certifications</p></div>
+      <div class="cc-item"><p class="cc-n">6</p><p class="cc-l">Institutions</p></div>
+      <div class="cc-item"><p class="cc-n">AML</p><p class="cc-l">Core Specialty</p></div>
+    </div>
+    <div class="certs-bottom-text">
+      <h3>Want to see the actual certificates?</h3>
+      <p>All certifications are verified and available to share with serious inquiries.</p>
+    </div>
+    <a href="#contact" class="btn-request">📄 Request Certificates →</a>
+  </div>
+</section>
+
+<section class="pricing" id="pricing">
+  <p class="eyebrow">Pricing</p>
+  <h2 class="s-title">Simple, transparent <em>rates</em></h2>
+  <p class="pricing-note">All packages are flexible. Let's talk and find what works best for your business.</p>
+  <div class="pricing-grid">
+    <div class="price-card">
+      <p class="price-plan">Starter</p>
+      <p class="price-amount">$8<span style="font-size:1.2rem;font-weight:400">/hr</span></p>
+      <p class="price-period">or ~$320/month (40 hrs)</p>
+      <p class="price-desc">Perfect for businesses that need part-time support on specific tasks.</p>
+      <ul class="price-feats"><li>Up to 40 hours/month</li><li>Admin &amp; scheduling</li><li>Email management</li><li>Basic research tasks</li><li>Response within 24hrs</li></ul>
+      <a href="#contact" class="price-cta">Get Started →</a>
+    </div>
+    <div class="price-card featured">
+      <span class="feat-badge">Most Popular</span>
+      <p class="price-plan">Professional</p>
+      <p class="price-amount">$12<span style="font-size:1.2rem;font-weight:400">/hr</span></p>
+      <p class="price-period">or ~$960/month (80 hrs)</p>
+      <p class="price-desc">For growing businesses that need consistent, reliable full support.</p>
+      <ul class="price-feats"><li>Up to 80 hours/month</li><li>All Starter features</li><li>Social media management</li><li>Customer support</li><li>Content writing</li><li>Priority response</li></ul>
+      <a href="#contact" class="price-cta">Get Started →</a>
+    </div>
+    <div class="price-card">
+      <p class="price-plan">Executive</p>
+      <p class="price-amount">$15<span style="font-size:1.2rem;font-weight:400">/hr</span></p>
+      <p class="price-period">or ~$2,400/month (160 hrs)</p>
+      <p class="price-desc">Full-time dedicated support for executives who need a true right hand.</p>
+      <ul class="price-feats"><li>Full-time (160 hrs/month)</li><li>All Professional features</li><li>Operations management</li><li>Compliance documentation</li><li>Strategic research &amp; reports</li><li>Same-day response</li></ul>
+      <a href="#contact" class="price-cta">Get Started →</a>
+    </div>
+  </div>
+  <p class="pricing-disc">* Rates are negotiable based on scope. Custom packages available.</p>
+</section>
+
+<section class="faq" id="faq">
+  <p class="eyebrow">FAQ</p>
+  <h2 class="s-title">Common <em>questions</em></h2>
+  <div class="faq-grid">
+    <div class="faq-item"><p class="faq-q">What tools do you use to communicate?<span class="faq-icon">+</span></p><p class="faq-a">I'm flexible! I work with Slack, Zoom, Google Meet, WhatsApp, or email — whatever works best for you. I adapt to your workflow.</p></div>
+    <div class="faq-item"><p class="faq-q">What are your working hours?<span class="faq-icon">+</span></p><p class="faq-a">I'm based in the Philippines (UTC+8) but offer flexible hours to accommodate different time zones. We can discuss a schedule during onboarding.</p></div>
+    <div class="faq-item"><p class="faq-q">How do we get started?<span class="faq-icon">+</span></p><p class="faq-a">Send me a message and I'll schedule a free 30-minute discovery call. We'll discuss your needs, I'll propose a plan, and if we're a good fit — we start!</p></div>
+    <div class="faq-item"><p class="faq-q">Can I trust you with sensitive business info?<span class="faq-icon">+</span></p><p class="faq-a">Absolutely. My 10+ years in banking and compliance required handling highly confidential data daily. I sign NDAs if required and treat all client info with full discretion.</p></div>
+    <div class="faq-item"><p class="faq-q">Do you offer a trial period?<span class="faq-icon">+</span></p><p class="faq-a">Yes! I offer a paid trial week so you can experience my work firsthand with no long-term commitment — to make sure we're the right fit.</p></div>
+    <div class="faq-item"><p class="faq-q">What makes you different from other VAs?<span class="faq-icon">+</span></p><p class="faq-a">Most VAs come from admin backgrounds. I come from 10+ years in banking, operations management in Dubai, and fintech compliance. I think like a business professional — not just a task executor.</p></div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div>
+    <p class="eyebrow">Get In Touch</p>
+    <h2 class="s-title">Let's work <em>together</em></h2>
+    <p class="contact-p">Ready to delegate and grow? I'd love to hear about your business. I respond within 24 hours — let's start the conversation!</p>
+    <div class="c-items">
+      <div class="c-item"><div class="c-ico">✉️</div>babyjmgr13@gmail.com</div>
+      <div class="c-item"><div class="c-ico">💬</div><a href="https://wa.me/639062858178" target="_blank">WhatsApp: +63 906 285 8178</a></div>
+      <div class="c-item"><div class="c-ico">💼</div><a href="https://www.linkedin.com/in/baby-jane-magro-96b888292/" target="_blank">LinkedIn: Baby Jane Magro</a></div>
+      <div class="c-item"><div class="c-ico">📍</div>NCR, Philippines · Open to Worldwide Clients</div>
+      <div class="c-item"><div class="c-ico">🕐</div>UTC+8 · Flexible Hours Available</div>
+      <div style="margin-top:1.5rem;padding:1.5rem;background:var(--terra-light);border:1.5px solid var(--terra);border-radius:14px;">
+        <p style="font-size:0.7rem;font-weight:700;color:var(--terra);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:0.4rem">📅 Prefer to talk first?</p>
+        <p style="font-size:0.82rem;color:var(--brown2);font-weight:300;line-height:1.65;margin-bottom:1rem">Book a free 30-minute discovery call. No pressure — just a quick chat to see if we're a good fit.</p>
+        <a href="https://calendar.app.google/jCp9xYLNKikETnNq8" target="_blank" style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.7rem 1.4rem;background:var(--terra);color:white;font-family:'Plus Jakarta Sans',sans-serif;font-size:0.75rem;font-weight:700;text-decoration:none;border-radius:100px;transition:all 0.25s">
+          Book on Google Meet →
+        </a>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="cform">
+      <h3>Send a Message 👋</h3>
+      <form action="https://formspree.io/f/mjgazbzr" method="POST" onsubmit="handleSubmit(event)">
+        <div class="form-row">
+          <div class="fg"><label class="fl">First Name</label><input class="fi" type="text" name="first_name" placeholder="Jane" required/></div>
+          <div class="fg"><label class="fl">Last Name</label><input class="fi" type="text" name="last_name" placeholder="Smith" required/></div>
+        </div>
+        <div class="fg"><label class="fl">Email Address</label><input class="fi" type="email" name="email" placeholder="jane@company.com" required/></div>
+        <div class="fg">
+          <label class="fl">Service Needed</label>
+          <select class="fsel" name="service">
+            <option value="">Choose a service...</option>
+            <option>Admin &amp; Scheduling</option>
+            <option>Operations Support</option>
+            <option>Research &amp; Reports</option>
+            <option>Customer Support</option>
+            <option>Social Media Management</option>
+            <option>Content &amp; Copywriting</option>
+            <option>Multiple / Not Sure Yet</option>
+          </select>
+        </div>
+        <div class="fg"><label class="fl">Your Message</label><textarea class="fta" name="message" placeholder="Tell me about your business and what support you're looking for..." required></textarea></div>
+        <button type="submit" class="fsub">Send Message →</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="f-logo">Baby Jane<span>.</span></span>
+  <span class="f-copy">© 2025 · Baby Jane Magro Rodriguez · Virtual Assistant · Philippines</span>
+  <div class="f-links"><a href="#home">Top</a><a href="#services">Services</a><a href="#pricing">Pricing</a><a href="#contact">Hire Me</a></div>
+</footer>
+
+<script>
+  // Mobile nav
+  function toggleMobileNav() {
+    var menu = document.getElementById('navMobile');
+    var toggle = document.getElementById('navToggle');
+    menu.classList.toggle('open');
+    toggle.classList.toggle('open');
+  }
+  function closeMobileNav() {
+    document.getElementById('navMobile').classList.remove('open');
+    document.getElementById('navToggle').classList.remove('open');
+  }
+
+  // Scroll to top visibility
+  window.addEventListener('scroll', function() {
+    document.getElementById('scrollTop').classList.toggle('visible', window.scrollY > 400);
+  });
+
+  // Animated number counter
+  function animateCounters() {
+    document.querySelectorAll('.num-n').forEach(function(el) {
+      var raw = el.textContent.replace(/[^0-9]/g,'');
+      if (!raw) return;
+      var target = parseInt(raw);
+      var suffix = el.textContent.replace(/[0-9]/g,'').replace(/<[^>]+>/g,'').trim();
+      var sup = el.querySelector('sup') ? el.querySelector('sup').textContent : '';
+      var duration = 1400;
+      var start = performance.now();
+      function update(now) {
+        var progress = Math.min((now - start) / duration, 1);
+        var ease = 1 - Math.pow(1 - progress, 3);
+        var val = Math.floor(ease * target);
+        el.innerHTML = val + (sup ? '<sup>' + sup + '</sup>' : '');
+        if (progress < 1) requestAnimationFrame(update);
+        else el.innerHTML = target + (sup ? '<sup>' + sup + '</sup>' : '');
+      }
+      requestAnimationFrame(update);
+    });
+  }
+
+  // Trigger counter when numbers section comes into view
+  var counted = false;
+  var numbersObs = new IntersectionObserver(function(entries) {
+    if (entries[0].isIntersecting && !counted) {
+      counted = true;
+      animateCounters();
+    }
+  }, { threshold: 0.3 });
+  var numSection = document.querySelector('.numbers');
+  if (numSection) numbersObs.observe(numSection);
+
+  // Portfolio filter
+  function filterPort(cat, btn) {
+    document.querySelectorAll('.port-tab').forEach(function(t) { t.classList.remove('active'); });
+    btn.classList.add('active');
+    document.querySelectorAll('.port-card').forEach(function(card) {
+      if (cat === 'all' || card.dataset.cat === cat) {
+        card.classList.remove('hidden');
+      } else {
+        card.classList.add('hidden');
+      }
+    });
+  }
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-item').forEach(function(item) {
+    item.addEventListener('click', function() {
+      var wasOpen = this.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(function(f) { f.classList.remove('open'); });
+      if (!wasOpen) this.classList.add('open');
+    });
+  });
+
+  // Nav shadow on scroll
+  window.addEventListener('scroll', function() {
+    document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 20);
+  });
+
+  // Active nav highlight
+  window.addEventListener('scroll', function() {
+    var cur = '';
+    document.querySelectorAll('section[id]').forEach(function(s) {
+      if (window.scrollY >= s.offsetTop - 80) cur = s.id;
+    });
+    document.querySelectorAll('.nav-links a:not(.nav-btn)').forEach(function(a) {
+      a.style.color = a.getAttribute('href') === '#' + cur ? 'var(--terra)' : '';
+    });
+  });
+
+  // Form submit handler
+  async function handleSubmit(e) {
+    e.preventDefault();
+    var btn = e.target.querySelector('.fsub');
+    var form = e.target;
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+    try {
+      var res = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        btn.textContent = "Sent! I'll be in touch soon ✓";
+        btn.style.background = '#6b9e8a';
+        form.reset();
+        setTimeout(function() { btn.textContent = 'Send Message →'; btn.style.background = ''; btn.disabled = false; }, 4000);
+      } else {
+        btn.textContent = 'Something went wrong — try again';
+        btn.style.background = '#c0392b';
+        setTimeout(function() { btn.textContent = 'Send Message →'; btn.style.background = ''; btn.disabled = false; }, 3500);
+      }
+    } catch(err) {
+      btn.textContent = 'Network error — try again';
+      btn.style.background = '#c0392b';
+      setTimeout(function() { btn.textContent = 'Send Message →'; btn.style.background = ''; btn.disabled = false; }, 3500);
+    }
+  }
+</script>
+</body>
+</html>
